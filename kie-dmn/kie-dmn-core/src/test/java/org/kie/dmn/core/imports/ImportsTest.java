@@ -179,6 +179,44 @@ public class ImportsTest {
         assertThat(evaluateAll.getDecisionResultByName("Say the Greeting to Person").getResult(), is("Hello, John"));
     }
 
+	
+    @Test
+    public void testImportBkmsWithTypeInvocation() {
+        DMNRuntime runtime = DMNRuntimeUtil.createRuntimeWithAdditionalResources("bkm-invocation-with-types-invoke.dmn",
+                                                                                 this.getClass(),
+                                                                                 "bkm-invocation-with-types-bkms.dmn");
+
+        DMNModel importedModel = runtime.getModel("http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6",
+                                                  "Payment Method Status");
+        assertThat(importedModel, notNullValue());
+        assertThat(DMNRuntimeUtil.formatMessages(importedModel.getMessages()), importedModel.hasErrors(), is(false));
+
+        DMNModel dmnModel = runtime.getModel("http://www.trisotech.com/dmn/definitions/_c79d8790-ab22-4c2b-b8c2-6a50c8e585ec",
+                                             "Simple");
+        assertThat(dmnModel, notNullValue());
+        assertThat(DMNRuntimeUtil.formatMessages(dmnModel.getMessages()), dmnModel.hasErrors(), is(false));
+
+        DMNContext context = runtime.newContext();
+        context.set("run date", null);
+        context.set("Unblock Date", null);
+        context.set("Last Draft Date", null);
+        context.set("Expiration Month", 3);
+        context.set("Expiration Year", 2018);
+        context.set("Payment Method Type", "Bank Account");
+        context.set("Last Draft Status", "Successful");
+
+        DMNResult evaluateAll = runtime.evaluateAll(dmnModel, context);
+        assertThat(DMNRuntimeUtil.formatMessages(evaluateAll.getMessages()), evaluateAll.hasErrors(), is(false));
+
+        LOG.debug("{}", evaluateAll);
+		System.out.println(evaluateAll);
+		System.out.println(evaluateAll.getMessages().size());
+		System.out.println(DMNRuntimeUtil.formatMessages(evaluateAll.getMessages()));
+		
+
+		}
+	
+	
 
 }
 

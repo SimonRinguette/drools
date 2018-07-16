@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dmn11:definitions xmlns="http://www.trisotech.com/dmn/definitions/_c79d8790-ab22-4c2b-b8c2-6a50c8e585ec" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:include1="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.1.2" id="_c79d8790-ab22-4c2b-b8c2-6a50c8e585ec" name="Simple" namespace="http://www.trisotech.com/dmn/definitions/_c79d8790-ab22-4c2b-b8c2-6a50c8e585ec" triso:logoChoice="Default" xmlns:dmn11="http://www.omg.org/spec/DMN/20151101/dmn.xsd">
+  <dmn11:extensionElements/>
+  <dmn11:import xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:modelName="Payment Method Status" drools:name="Lib" importType="http://www.omg.org/spec/DMN/20180521/MODEL/" namespace="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6" triso:fileId="eyJmIjp7InNrdSI6ImM0NzQwOTg1LWY3NmItNDJiMi05ZWRiLWNhN2RhOWMxMjIxMCIsIm5hbWUiOiJQYXltZW50IE1ldGhvZCBTdGF0dXMifX0=" triso:fileName="JP Car Rental examples/ABC/Payment Method Status"/>
+  <dmn11:decision id="_f755a3e3-ddf3-4107-a27e-518d41d124a6" name="Payment Method Status and type">
+    <dmn11:variable id="_c7b3e760-78af-4b27-9fca-d543df004de0" name="Payment Method Status and type" typeRef="Lib.tPaymentMethodStatusAndType"/>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_5818657b-327e-4f4e-b80b-902bd1dec62f"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_02dbf2d2-13eb-476c-911c-01dcde6981b9"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_954e10ef-7a78-4a75-8fa6-6af93c680ee3"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_ea33f38f-6f08-478f-9f85-96c6b14ae763"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_4689504c-4d2c-40f8-b07d-ed934777c5a7"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_2d991e2b-062b-4890-8f0c-ff8074abd3b8"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement>
+      <dmn11:requiredInput href="#_c5d1c506-b2bd-4e0d-9efb-f4357d1da1ad"/>
+    </dmn11:informationRequirement>
+    <dmn11:knowledgeRequirement>
+      <dmn11:requiredKnowledge href="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6#_44273bef-d499-42c7-94f4-8c3cb22b3611"/>
+    </dmn11:knowledgeRequirement>
+    <dmn11:invocation id="_10872ea3-0e8f-4586-a87b-5ceef3a304a9" typeRef="Lib.tPaymentMethodStatusAndType">
+      <dmn11:literalExpression id="literal__10872ea3-0e8f-4586-a87b-5ceef3a304a9">
+        <dmn11:text>Lib.PaymentMethodStatusAndType</dmn11:text>
+      </dmn11:literalExpression>
+      <dmn11:binding>
+        <dmn11:parameter id="_8fcdfb46-045e-4071-a8b4-ae5e0778b64c" name="Payment Method Type"/>
+        <dmn11:literalExpression id="_ea7b9732-511e-489f-83f4-ca5d46be3eb9">
+          <dmn11:text>Payment Method Type</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_830866f5-9552-4ff3-978d-2bf9cf2622d7" name="Last Draft Status"/>
+        <dmn11:literalExpression id="_d6b66950-cd87-4293-9aa0-a241fbfb2926">
+          <dmn11:text>"Soft Decline"</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_d3be8596-147e-4dfd-b635-bf58d37a694c" name="Unblock Date"/>
+        <dmn11:literalExpression id="_c9f7bcf8-7d47-494a-b19d-b214e8f3a393">
+          <dmn11:text>Unblock Date</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_95f4a941-4f2d-44d6-bade-b5ee05465efe" name="Run Date"/>
+        <dmn11:literalExpression id="_3d912bd2-e51c-44aa-883b-3618a240245f">
+          <dmn11:text>run date</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_aca949fc-1ce6-4fff-a961-bea32021bd2a" name="Last Draft Date"/>
+        <dmn11:literalExpression id="_e1ae63cf-b50a-4317-9519-010301b5cd43">
+          <dmn11:text>Last Draft Date</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_61ce5072-700a-4234-838b-f9163e517928" name="Expiration Month"/>
+        <dmn11:literalExpression id="_f96267e4-abf3-4cb0-8218-cd81b908b97a">
+          <dmn11:text>Expiration Month</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+      <dmn11:binding>
+        <dmn11:parameter id="_41fdb7ae-bdaa-4b18-b0ee-0dc04d77d8d2" name="Expiration Year"/>
+        <dmn11:literalExpression id="_55db8f10-6e60-487c-a4bf-f0afb3e55eb4">
+          <dmn11:text>Expiration Year</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:binding>
+    </dmn11:invocation>
+  </dmn11:decision>
+  <dmn11:inputData id="_5818657b-327e-4f4e-b80b-902bd1dec62f" name="run date">
+    <dmn11:variable id="_c7771808-1ff1-455c-b808-d7a9b5777883" name="run date" typeRef="feel:date"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_02dbf2d2-13eb-476c-911c-01dcde6981b9" name="Expiration Month">
+    <dmn11:variable id="_d2e1c41a-ff7f-4ee2-ab22-fdfc14b7bc49" name="Expiration Month" typeRef="Lib.tExpirationMonth"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_954e10ef-7a78-4a75-8fa6-6af93c680ee3" name="Expiration Year">
+    <dmn11:variable id="_d5a8f784-cfdf-413d-9299-287d704f9751" name="Expiration Year" typeRef="Lib.tExpirationYear"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_ea33f38f-6f08-478f-9f85-96c6b14ae763" name="Unblock Date">
+    <dmn11:variable id="_c865adae-2a78-43d8-a241-545b05fe4474" name="Unblock Date" typeRef="feel:date"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_4689504c-4d2c-40f8-b07d-ed934777c5a7" name="Last Draft Date">
+    <dmn11:variable id="_a62f3dd9-1bad-4e53-b403-9d461b6b698e" name="Last Draft Date" typeRef="feel:date"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_2d991e2b-062b-4890-8f0c-ff8074abd3b8" name="Payment Method Type">
+    <dmn11:extensionElements>
+      <triso:semanticLink id="_0bf63a9b-6078-4f54-bf41-81db826359b2" modelURI="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6" name="Payment Method Status - Payment Method Type" uri="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6#id-d9ce40156f362aea009b5d2d39e730f7"/>
+    </dmn11:extensionElements>
+    <dmn11:variable id="_a7784da8-3a2b-4406-b0b0-5f801b0a27d5" name="Payment Method Type" typeRef="Lib.tPaymentMethodType"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_c5d1c506-b2bd-4e0d-9efb-f4357d1da1ad" name="Last Draft Status">
+    <dmn11:variable id="_700504c3-5440-4891-93e1-344237aa249b" name="Last Draft Status" typeRef="Lib.tLastDraftStatus"/>
+  </dmn11:inputData>
+</dmn11:definitions>

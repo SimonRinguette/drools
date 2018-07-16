@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dmn11:definitions xmlns="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.1.2" id="id-0c5110edefdc4d45937a28f9004fd4e6" name="Payment Method Status" namespace="http://www.trisotech.com/definitions/id-0c5110edefdc4d45937a28f9004fd4e6" triso:logoChoice="Default" xmlns:dmn11="http://www.omg.org/spec/DMN/20151101/dmn.xsd">
+  <dmn11:description/>
+  <dmn11:extensionElements>
+    <tc:testCases>
+      <tc:testCase id="_291e2438-c5ec-404b-ac22-227dc9c98ad9" name="BA 1">
+        <tc:inputNode name="Unblock Date">
+          <tc:value xsi:type="xsd:date"/>
+        </tc:inputNode>
+        <tc:inputNode name="Expiration Month">
+          <tc:value xsi:type="xsd:double"/>
+        </tc:inputNode>
+        <tc:inputNode name="Expiration Year">
+          <tc:value xsi:type="xsd:double"/>
+        </tc:inputNode>
+        <tc:inputNode name="Last Draft Status">
+          <tc:value xsi:type="xsd:string">Not Drafted</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Payment Method Type">
+          <tc:value xsi:type="xsd:string">Bank Account</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Run Date">
+          <tc:value xsi:type="xsd:date">2018-06-13</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Last Draft Date">
+          <tc:value xsi:type="xsd:date"/>
+        </tc:inputNode>
+        <tc:inputNode name="Null Date">
+          <tc:value xsi:type="xsd:date">2000-01-01</tc:value>
+        </tc:inputNode>
+        <tc:resultNode name="Payment Method Status">
+          <tc:expected>
+            <tc:value xsi:type="xsd:string">Can Draft</tc:value>
+          </tc:expected>
+        </tc:resultNode>
+      </tc:testCase>
+      <tc:testCase id="_2ed99c1a-837d-43d8-bc97-8ba39548c9e9" name="Block Null Date Test">
+        <tc:inputNode name="Unblock Date">
+          <tc:value xsi:type="xsd:date"/>
+        </tc:inputNode>
+        <tc:inputNode name="Expiration Month">
+          <tc:value xsi:type="xsd:double"/>
+        </tc:inputNode>
+        <tc:inputNode name="Expiration Year">
+          <tc:value xsi:type="xsd:double"/>
+        </tc:inputNode>
+        <tc:inputNode name="Last Draft Status">
+          <tc:value xsi:type="xsd:string">Blocked</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Payment Method Type">
+          <tc:value xsi:type="xsd:string">Bank Account</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Run Date">
+          <tc:value xsi:type="xsd:date">2018-06-13</tc:value>
+        </tc:inputNode>
+        <tc:inputNode name="Last Draft Date">
+          <tc:value xsi:type="xsd:date">2018-06-01</tc:value>
+        </tc:inputNode>
+        <tc:resultNode name="Payment Method Status">
+          <tc:expected/>
+        </tc:resultNode>
+      </tc:testCase>
+    </tc:testCases>
+    <triso:ProjectCharter>
+      <triso:projectGoals/>
+      <triso:projectChallenges/>
+      <triso:projectStakeholders/>
+    </triso:ProjectCharter>
+  </dmn11:extensionElements>
+  <dmn11:itemDefinition xmlns:sigExt="http://www.signavio.com/schema/dmn/1.1/" isCollection="false" label="tLastDraftStatus" name="tLastDraftStatus" sigExt:glossaryId="1c762f35f1dc4aef8a724eae72f931ad">
+    <dmn11:typeRef>feel:string</dmn11:typeRef>
+    <dmn11:allowedValues triso:constraintsType="enumeration">
+      <dmn11:text>"Successful","Blocked","Soft Decline","Not Drafted","Account Closed"</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition isCollection="false" label="tPaymentMethodStatus" name="tPaymentMethodStatus">
+    <dmn11:typeRef>feel:string</dmn11:typeRef>
+    <dmn11:allowedValues triso:constraintsType="enumeration">
+      <dmn11:text>"Can Draft","Do Not Draft"</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition xmlns:sigExt="http://www.signavio.com/schema/dmn/1.1/" isCollection="false" label="tPaymentMethodType" name="tPaymentMethodType" sigExt:glossaryId="5ecb64ba9ef745bdb9524489773b8f65">
+    <dmn11:typeRef>feel:string</dmn11:typeRef>
+    <dmn11:allowedValues triso:constraintsType="enumeration">
+      <dmn11:text>"Bank Account","Credit Card","Debit Card","None"</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition label="tPaymentMethodStatusAndType" name="tPaymentMethodStatusAndType">
+    <dmn11:itemComponent id="_a126255a-fad7-4975-b589-63a351143924" name="tPaymentMethodStatus">
+      <dmn11:typeRef>tPaymentMethodStatus</dmn11:typeRef>
+    </dmn11:itemComponent>
+    <dmn11:itemComponent id="_72750f63-9b43-4f29-8bbd-df370d4ee63d" name="tPaymentMethodType">
+      <dmn11:typeRef>tPaymentMethodType</dmn11:typeRef>
+    </dmn11:itemComponent>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition label="tExpirationMonth" name="tExpirationMonth">
+    <dmn11:typeRef>feel:number</dmn11:typeRef>
+    <dmn11:allowedValues triso:constraintsType="simple">
+      <dmn11:text>[1..12]</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition label="tExpirationYear" name="tExpirationYear">
+    <dmn11:typeRef>feel:number</dmn11:typeRef>
+    <dmn11:allowedValues triso:constraintsType="simple">
+      <dmn11:text>[2018..2050]</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:businessKnowledgeModel id="_2dea50b0-a360-430b-bcb3-085153e460a9" name="Credit Card Expiration Date">
+    <dmn11:encapsulatedLogic xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="F" id="_35c55d6d-11c0-4c00-a1d9-53fc112fd208" typeRef="feel:date">
+      <dmn11:formalParameter id="_e0e4848c-d9b8-4efd-b980-7ad676886f90" name="ExpYear" typeRef="feel:number"/>
+      <dmn11:formalParameter id="_669cc426-08d2-40f5-9f25-637462fdb631" name="ExpMonth" typeRef="feel:number"/>
+      <dmn11:literalExpression id="_df0dd641-285f-47b7-a1dc-1a1b97373ba7">
+        <dmn11:text>date(ExpYear, ExpMonth, 1) + duration("P1M") - duration("P1D")</dmn11:text>
+      </dmn11:literalExpression>
+    </dmn11:encapsulatedLogic>
+    <dmn11:variable id="_f7cf4936-cf8a-41a3-ac3c-94bfeb328171" name="Credit Card Expiration Date" typeRef="feel:date"/>
+  </dmn11:businessKnowledgeModel>
+  <dmn11:businessKnowledgeModel xmlns:sigExt="http://www.signavio.com/schema/dmn/1.1/" id="_44273bef-d499-42c7-94f4-8c3cb22b3611" label="Payment Method Status" name="PaymentMethodStatusAndType" sigExt:diagramId="989414d085564255af2c9ffc5171ce6b" sigExt:shapeId="sid-C1DC97BB-3677-419C-9F97-6F70F5977419">
+    <dmn11:encapsulatedLogic xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="F" id="_94e764ad-b5cc-4eda-80c8-c07f7720488a" typeRef="tPaymentMethodStatusAndType">
+      <dmn11:formalParameter id="_308f1be3-f193-4956-9650-54e92a39b7bb" name="Payment Method Type" typeRef="tPaymentMethodType"/>
+      <dmn11:formalParameter id="_c13bc9de-340f-4dcd-8278-6f721eaa0c4d" name="Last Draft Status" typeRef="tLastDraftStatus"/>
+      <dmn11:formalParameter id="_7b832e2e-3c0e-416e-8d93-a89da28f8a43" name="Unblock Date" typeRef="feel:date"/>
+      <dmn11:formalParameter id="_9908f3e0-7f8a-4c5e-b851-fa58db73e3f2" name="Run Date" typeRef="feel:date"/>
+      <dmn11:formalParameter id="_158157cb-5be2-46ae-bad2-f350696bbb01" name="Last Draft Date" typeRef="feel:date"/>
+      <dmn11:formalParameter id="_c55cf7da-b913-4af5-97c7-98f7e2bdf973" name="Expiration Year" typeRef="tExpirationYear"/>
+      <dmn11:formalParameter id="_6f07199e-da10-4ca2-9e4f-c2ed952222b9" name="Expiration Month" typeRef="tExpirationMonth"/>
+      <dmn11:context id="_e125f890-2300-4c3f-ae95-d2587ef69b4c">
+        <dmn11:contextEntry>
+          <dmn11:variable id="_0ed6a4e3-bb4a-45c2-a7ff-74d01a88b68d" name="PaymentMethodStatusAndType" typeRef="tPaymentMethodStatusAndType"/>
+          <dmn11:decisionTable hitPolicy="UNIQUE" id="_389a0c56-6f22-45ef-bcb4-d2dc81ffd7b7" outputLabel="PaymentMethodStatusAndType">
+            <dmn11:input id="_8fa723ae-2af6-4831-adcf-c09b6d0bffb3">
+              <dmn11:inputExpression typeRef="tPaymentMethodType">
+                <dmn11:text>Payment Method Type</dmn11:text>
+              </dmn11:inputExpression>
+              <dmn11:inputValues triso:constraintsType="enumeration">
+                <dmn11:text>"Bank Account","Credit Card","Debit Card","None"</dmn11:text>
+              </dmn11:inputValues>
+            </dmn11:input>
+            <dmn11:input id="_fb5b7d73-feb5-494d-b75e-cb8aecc3323a">
+              <dmn11:inputExpression typeRef="tLastDraftStatus">
+                <dmn11:text>Last Draft Status</dmn11:text>
+              </dmn11:inputExpression>
+              <dmn11:inputValues triso:constraintsType="enumeration">
+                <dmn11:text>"Successful","Blocked","Soft Decline","Not Drafted","Account Closed"</dmn11:text>
+              </dmn11:inputValues>
+            </dmn11:input>
+            <dmn11:input id="_c02ce159-7318-4c6b-b6dd-7ea4775b03db">
+              <dmn11:inputExpression typeRef="feel:date">
+                <dmn11:text>Unblock Date</dmn11:text>
+              </dmn11:inputExpression>
+            </dmn11:input>
+            <dmn11:input id="_bd5ebf6d-14b0-4bdd-9a64-2b8da618373b">
+              <dmn11:inputExpression typeRef="feel:date">
+                <dmn11:text>Run Date</dmn11:text>
+              </dmn11:inputExpression>
+            </dmn11:input>
+            <dmn11:output id="_9fc924f6-e25d-4849-a7a4-c3ba2a1ce2bd" name="tPaymentMethodStatus" typeRef="tPaymentMethodStatus">
+              <dmn11:outputValues triso:constraintsType="enumeration">
+                <dmn11:text>"Can Draft","Do Not Draft"</dmn11:text>
+              </dmn11:outputValues>
+            </dmn11:output>
+            <dmn11:output id="_a9c5e525-ccdf-4e27-a170-113304bff381" name="tPaymentMethodType" typeRef="tPaymentMethodType">
+              <dmn11:outputValues triso:constraintsType="enumeration">
+                <dmn11:text>"Bank Account","Credit Card","Debit Card","None"</dmn11:text>
+              </dmn11:outputValues>
+            </dmn11:output>
+            <dmn11:rule id="_a207eb8e-0e33-4197-aae0-a183cd298540">
+              <dmn11:inputEntry id="_22d8c430-1de7-4236-876e-4bdf2140bed4">
+                <dmn11:text>"Bank Account"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_7c3ad3b1-4496-4619-8dea-24b30f600777">
+                <dmn11:text>"Successful","Soft Decline","Not Drafted"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_549d42d6-f052-48fd-b0d5-da32ae66758b">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_ece53755-4e90-44a6-920c-f9e435eda251">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_a0963eed-7999-4b21-802e-b48c28c24b48">
+                <dmn11:text>"Can Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_09255eac-2c76-4def-813e-cf482729de6c">
+                <dmn11:text>Payment Method Type</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_db9a7e4a-c4f4-4a30-96f8-f071f5ecdbab">
+              <dmn11:inputEntry id="_96959a0b-cccc-4615-a6e0-26c4923a2509">
+                <dmn11:text>"Bank Account"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_65665a24-5c1d-42a4-8d77-9d797715155b">
+                <dmn11:text>"Blocked"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_c57677a1-2476-4e2d-afae-fc265fc5a065" triso:unparsed="true">
+                <dmn11:text>&gt;= Last Draft Date</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_f8e98b47-23cd-4fa0-8dc0-a329639b5a7e">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_68525f9f-92ae-4442-8924-50556d55ae71">
+                <dmn11:text>"Can Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_8f4c74f7-ef0a-4382-8c05-704524cf8506">
+                <dmn11:text>Payment Method Type</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_dfcd4643-3c0d-4e44-b424-9dceafe3c97b">
+              <dmn11:inputEntry id="_19b72bb6-d54d-4617-95ec-26fc9d702149">
+                <dmn11:text>"Credit Card", "Debit Card"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_e12c5710-41b9-480c-b213-82c413664789">
+                <dmn11:text>"Successful","Soft Decline","Not Drafted"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_a2383f53-aed6-4825-bfea-517bca8c5e79">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_19b582da-7180-4414-9592-0703ea02b9bc" triso:unparsed="true">
+                <dmn11:text>&lt;= Credit Card Expiration Date(Expiration Year, Expiration Month)</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_b2ff0722-531b-4cf4-8c3b-3be87918f0c4">
+                <dmn11:text>"Can Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_ac782dfc-0a6d-408d-893e-d64888ba2930">
+                <dmn11:text>Payment Method Type</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_7baa47da-cb4f-4b2e-ad33-083284d1719c">
+              <dmn11:inputEntry id="_ab7e4eed-fed2-4868-b587-44df59742dc9">
+                <dmn11:text>"Credit Card", "Debit Card"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_f05054b5-fd99-4d5f-a516-fb98a79a4024">
+                <dmn11:text>"Blocked"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_6db19653-38e3-49a0-a07f-5c53509a641e" triso:unparsed="true">
+                <dmn11:text>&gt;= Last Draft Date</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_18d378e8-4663-4558-b2fe-9be8fca78180" triso:unparsed="true">
+                <dmn11:text>&lt;= Credit Card Expiration Date(Expiration Year,Expiration Month)</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_6f8f9a7f-dade-4d22-8b1e-7d7682ca43b9">
+                <dmn11:text>"Can Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_e62801d4-5ca6-4b9d-91fa-6b5cbe89938b">
+                <dmn11:text>Payment Method Type</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_23d19bc4-1c48-4d45-a614-c01b8d8af5cb">
+              <dmn11:inputEntry id="_6b97b899-631d-4f78-8163-7a11b4eaa4d5">
+                <dmn11:text>"Credit Card", "Debit Card"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_9e9ebb0f-ea22-490d-8cce-bc5a0d6aef49">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_d8554f6e-831d-47a3-962c-5d00c8e8b4f5">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_472cd3f4-769b-4448-8a2b-b0e4bb96ee55" triso:unparsed="true">
+                <dmn11:text>&gt; Credit Card Expiration Date(Expiration Year, Expiration Month)</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_6c155e9b-9cd0-4d35-bc18-d83327c8bb64">
+                <dmn11:text>"Do Not Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_d6702860-c289-422c-9d67-026fa189f06b">
+                <dmn11:text>"None"</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_aff86f09-35dd-4a18-8ace-b15ce2f6a4f7">
+              <dmn11:inputEntry id="_97c65c52-3454-4525-b06e-331fb3d98b19">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_5161bf6d-fe3c-4d44-b19d-c5a7b35b47b5">
+                <dmn11:text>"Blocked"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_b3f1a07b-d65b-4306-a07c-cf43c9c3e497" triso:unparsed="true">
+                <dmn11:text>&lt; Last Draft Date</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_caee9404-edba-4e69-96a1-b9ff5ecd9b9c">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_55cb6a62-9075-482b-b442-221987bcaad7">
+                <dmn11:text>"Do Not Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_a2d25b76-e87e-4bfb-9f59-bc26e55274d5">
+                <dmn11:text>"None"</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_0f39b87d-8485-4392-9a34-01c0d278ee26">
+              <dmn11:inputEntry id="_c8776c76-61bb-45c7-b468-edaca64c9f43">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_b6f56a55-f73c-4984-ab36-65348f4b5eae">
+                <dmn11:text>"Blocked"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_d67c8a8c-73eb-4423-bc1b-7daef2e84892">
+                <dmn11:text>=null</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_fa50a846-8e7a-48c9-ba01-06a92d68b2b4">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_12b4a368-d446-4106-b6f5-75872bfc7ebf">
+                <dmn11:text>"Do Not Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_2a84aed5-1b25-4aa7-aa37-cec67b143e80">
+                <dmn11:text>"None"</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+            <dmn11:rule id="_b2595b48-5711-4a66-8ef7-720d8da44921">
+              <dmn11:inputEntry id="_25812ec5-2e70-4e00-8bb0-b361403eb7c3">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_67273186-0627-4ef8-962d-b7b1986ba9e4">
+                <dmn11:text>"Account Closed"</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_6b8d05f1-9702-4ea3-8b9e-7a7f23df15e9">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:inputEntry id="_62d4784d-3a29-4780-a046-27c519fd099f">
+                <dmn11:text>-</dmn11:text>
+              </dmn11:inputEntry>
+              <dmn11:outputEntry id="_43efbfd8-0073-4c84-a9be-6ff00d37eeae">
+                <dmn11:text>"Do Not Draft"</dmn11:text>
+              </dmn11:outputEntry>
+              <dmn11:outputEntry id="_bca000ed-8326-4020-bb80-7a5d063cee6e">
+                <dmn11:text>"None"</dmn11:text>
+              </dmn11:outputEntry>
+            </dmn11:rule>
+          </dmn11:decisionTable>
+        </dmn11:contextEntry>
+        <dmn11:contextEntry>
+          <dmn11:literalExpression id="_9f04ec81-1588-41bf-9458-7705e9a38348">
+            <dmn11:text>PaymentMethodStatusAndType</dmn11:text>
+          </dmn11:literalExpression>
+        </dmn11:contextEntry>
+      </dmn11:context>
+    </dmn11:encapsulatedLogic>
+    <dmn11:variable id="_d476b2cc-5510-4f70-9ab2-09477f9b5bb8" name="PaymentMethodStatusAndType" typeRef="tPaymentMethodStatusAndType"/>
+    <dmn11:knowledgeRequirement>
+      <dmn11:requiredKnowledge href="#_2dea50b0-a360-430b-bcb3-085153e460a9"/>
+    </dmn11:knowledgeRequirement>
+  </dmn11:businessKnowledgeModel>
+</dmn11:definitions>
