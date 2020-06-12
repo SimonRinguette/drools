@@ -45,6 +45,7 @@ import org.kie.dmn.model.api.Definitions;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -509,6 +510,13 @@ public class ValidatorTest extends AbstractValidatorTest {
         assertTrue(ValidatorUtil.formatMessages(validate),
                    validate.stream().allMatch(p -> p.getLevel() == Level.WARNING &&
                                                    p.getSourceId().equals("_FE47213A-2042-49DE-9A44-65831DA6AD11")));
+    }
+
+    @Test
+    public void testBoxedExtension_Conditional13() {
+        List<DMNMessage> validate = validator.validate(getReader("boxedcontextextension/conditional.dmn"),
+                VALIDATE_SCHEMA, VALIDATE_MODEL, VALIDATE_COMPILATION);
+        assertEquals(0, validate.size());
     }
 
 }

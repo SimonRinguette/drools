@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 
+import org.kie.dmn.model.api.Conditional;
 import org.kie.dmn.model.api.Context;
 import org.kie.dmn.model.api.DMNModelInstrumentedBase;
 import org.kie.dmn.model.api.DecisionTable;
@@ -86,6 +87,8 @@ public final class MarshallingUtils {
             nodeName = "relation";
         } else if (e instanceof List) {
             nodeName = "list";
+        } else if (e instanceof Conditional) {
+            nodeName = "conditional";
         }
         return nodeName;
     }

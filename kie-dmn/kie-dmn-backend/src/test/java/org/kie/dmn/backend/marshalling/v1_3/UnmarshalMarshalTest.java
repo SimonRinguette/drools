@@ -56,6 +56,7 @@ import static org.junit.Assert.assertTrue;
 public class UnmarshalMarshalTest {
 
     private static final StreamSource DMN13_SCHEMA_SOURCE = new StreamSource(UnmarshalMarshalTest.class.getResource("/DMN13.xsd").getFile());
+    private static final StreamSource DMN13_EXT_SCHEMA_SOURCE = new StreamSource(UnmarshalMarshalTest.class.getResource("/TrisotechDMN13.xsd").getFile());
     private static final DMNMarshaller MARSHALLER = new org.kie.dmn.backend.marshalling.v1x.XStreamMarshaller();
     protected static final Logger logger = LoggerFactory.getLogger(UnmarshalMarshalTest.class);
 
@@ -105,11 +106,16 @@ public class UnmarshalMarshalTest {
         testRoundTripV13("org/kie/dmn/backend/marshalling/v1_3/", "decision-list.dmn");
     }
 
-    public void testRoundTripV13(String subdir, String xmlfile) throws Exception {
-        testRoundTrip(subdir, xmlfile, MARSHALLER, DMN13_SCHEMA_SOURCE);
+    @Test
+    public void testV13_conditional() throws Exception {
+        testRoundTripV13("org/kie/dmn/backend/marshalling/v1_3/", "conditional.dmn");
     }
 
-    public void testRoundTrip(String subdir, String xmlfile, DMNMarshaller marshaller, Source schemaSource) throws Exception {
+    public void testRoundTripV13(String subdir, String xmlfile) throws Exception {
+        testRoundTrip(subdir, xmlfile, MARSHALLER, DMN13_SCHEMA_SOURCE, DMN13_EXT_SCHEMA_SOURCE);
+    }
+
+    public void testRoundTrip(String subdir, String xmlfile, DMNMarshaller marshaller, Source... schemaSource) throws Exception {
 
         File baseOutputDir = new File("target/test-xmlunit/");
         File testClassesBaseDir = new File("target/test-classes/");
@@ -121,7 +127,7 @@ public class UnmarshalMarshalTest {
         Definitions unmarshal = marshaller.unmarshal(new InputStreamReader(fis));
 
         Validator v = Validator.forLanguage(Languages.W3C_XML_SCHEMA_NS_URI);
-        v.setSchemaSource(schemaSource);
+        v.setSchemaSources(schemaSource);
         ValidationResult validateInputResult = v.validateInstance(new StreamSource(inputXMLFile));
         if (!validateInputResult.isValid()) {
             for (ValidationProblem p : validateInputResult.getProblems()) {

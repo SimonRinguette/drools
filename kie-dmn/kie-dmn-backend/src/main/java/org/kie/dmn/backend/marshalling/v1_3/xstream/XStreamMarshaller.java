@@ -47,6 +47,7 @@ import org.kie.dmn.model.v1_3.TAuthorityRequirement;
 import org.kie.dmn.model.v1_3.TBinding;
 import org.kie.dmn.model.v1_3.TBusinessContextElement;
 import org.kie.dmn.model.v1_3.TBusinessKnowledgeModel;
+import org.kie.dmn.model.v1_3.TConditional;
 import org.kie.dmn.model.v1_3.TContext;
 import org.kie.dmn.model.v1_3.TContextEntry;
 import org.kie.dmn.model.v1_3.TDMNElement;
@@ -73,6 +74,7 @@ import org.kie.dmn.model.v1_3.TKnowledgeRequirement;
 import org.kie.dmn.model.v1_3.TKnowledgeSource;
 import org.kie.dmn.model.v1_3.TLiteralExpression;
 import org.kie.dmn.model.v1_3.TNamedElement;
+import org.kie.dmn.model.v1_3.TNamedExpression;
 import org.kie.dmn.model.v1_3.TOrganizationUnit;
 import org.kie.dmn.model.v1_3.TOutputClause;
 import org.kie.dmn.model.v1_3.TPerformanceIndicator;
@@ -210,6 +212,7 @@ public class XStreamMarshaller
         xStream.alias("businessContextElement", TBusinessContextElement.class);
         xStream.alias("businessKnowledgeModel", TBusinessKnowledgeModel.class);
         xStream.alias("column", TInformationItem.class);
+        xStream.alias("conditional", TConditional.class);
         xStream.alias("context", TContext.class);
         xStream.alias("contextEntry", TContextEntry.class);
         xStream.alias("decision", TDecision.class);
@@ -223,6 +226,7 @@ public class XStreamMarshaller
         xStream.alias("definitions", TDefinitions.class);
         xStream.alias("drgElement", TDMNElementReference.class);
         xStream.alias("elementCollection", TElementCollection.class);
+        xStream.alias("else", TNamedExpression.class);
         xStream.alias("encapsulatedDecision", TDMNElementReference.class);
         xStream.alias("encapsulatedLogic", TFunctionDefinition.class);
         xStream.alias("expression", TExpression.class);
@@ -230,6 +234,7 @@ public class XStreamMarshaller
         xStream.alias("functionItem", TFunctionItem.class);
         xStream.alias("functionDefinition", TFunctionDefinition.class);
         xStream.alias("group", TGroup.class);
+        xStream.alias("if", TNamedExpression.class);
         xStream.alias("impactedPerformanceIndicator", TDMNElementReference.class);
         xStream.alias("impactingDecision", TDMNElementReference.class);
         xStream.alias("import", TImport.class);
@@ -270,6 +275,7 @@ public class XStreamMarshaller
         xStream.alias("supportedObjective", TDMNElementReference.class);
         xStream.alias("targetRef", TDMNElementReference.class);
         xStream.alias("textAnnotation", TTextAnnotation.class);
+        xStream.alias("then", TNamedExpression.class);
         xStream.alias("type", String.class ); // TODO where?
         xStream.alias("typeRef", QName.class );
         xStream.alias("usingProcess", TDMNElementReference.class);
@@ -330,6 +336,7 @@ public class XStreamMarshaller
         xStream.registerConverter(new AuthorityRequirementConverter( xStream ) );
         xStream.registerConverter(new BindingConverter( xStream ) );
         xStream.registerConverter(new BusinessKnowledgeModelConverter( xStream ) );
+        xStream.registerConverter(new ConditionalConverter( xStream ) );
         xStream.registerConverter(new ContextConverter( xStream ) );
         xStream.registerConverter(new ContextEntryConverter( xStream ) );
         xStream.registerConverter(new DecisionConverter( xStream ) );
@@ -351,6 +358,7 @@ public class XStreamMarshaller
         xStream.registerConverter(new KnowledgeRequirementConverter( xStream ) );
         xStream.registerConverter(new KnowledgeSourceConverter( xStream ) );
         xStream.registerConverter(new LiteralExpressionConverter( xStream ) );
+        xStream.registerConverter(new NamedExpressionConverter( xStream ) );
         xStream.registerConverter(new OrganizationUnitConverter( xStream ) );
         xStream.registerConverter(new OutputClauseConverter( xStream ) );
         xStream.registerConverter(new PerformanceIndicatorConverter( xStream ) );

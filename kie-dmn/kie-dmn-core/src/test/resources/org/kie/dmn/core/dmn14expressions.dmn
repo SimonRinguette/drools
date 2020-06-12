@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions
+	xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/"
+	xmlns:semantic="https://www.omg.org/spec/DMN/20191111/MODEL/"
+	xmlns:triso="http://www.trisotech.com/2015/triso/modeling"
+	xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/"
+	xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"
+	xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"
+	xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"
+	xmlns:feel="https://www.omg.org/spec/DMN/20191111/FEEL/"
+	xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"
+	xmlns:drools="http://www.drools.org/kie/dmn/1.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:rss="http://purl.org/rss/2.0/"
+	xmlns:openapi="https://openapis.org/omg/extension/1.0"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.trisotech.com/definitions/_3404349f-5046-4ad3-ad15-7f1e27291ab5"
+	id="_3404349f-5046-4ad3-ad15-7f1e27291ab5" name="DMN 1.4 expressions"
+	namespace="http://www.trisotech.com/definitions/_3404349f-5046-4ad3-ad15-7f1e27291ab5"
+	exporter="Decision Modeler" exporterVersion="6.11.4.202006100837"
+	triso:logoChoice="Default">
+	
+	<semantic:inputData id="boolVar" name="Boolean Input">
+        <semantic:variable name="Boolean Input" typeRef="boolean"/>
+    </semantic:inputData>
+	
+	<semantic:decision id="conditional" name="Conditional">
+		<semantic:variable name="Conditional" typeRef="string" />
+        <semantic:informationRequirement>
+            <semantic:requiredInput href="#boolVar"/>
+        </semantic:informationRequirement>
+		<boxedext:conditional typeRef="string">
+			<boxedext:if>
+				<semantic:literalExpression	typeRef="boolean">
+					<semantic:text>Boolean Input</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:if>
+			<boxedext:then>
+				<semantic:literalExpression	typeRef="string">
+					<semantic:text>"Conditional evaluated to TRUE"</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:then>
+			<boxedext:else>
+				<semantic:literalExpression	typeRef="string">
+					<semantic:text>"Conditional evaluated to FALSE"</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:else>
+		</boxedext:conditional>
+	</semantic:decision>
+
+
+	<semantic:decision id="non-boolean" name="Non boolean">
+		<semantic:variable name="Non boolean" typeRef="string" />
+		<boxedext:conditional typeRef="string">
+			<boxedext:if>
+				<semantic:literalExpression	typeRef="boolean">
+					<semantic:text>"hello"</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:if>
+			<boxedext:then>
+				<semantic:literalExpression	typeRef="string">
+					<semantic:text>"will not work"</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:then>
+			<boxedext:else>
+				<semantic:literalExpression	typeRef="string">
+					<semantic:text>"will not work"</semantic:text>
+				</semantic:literalExpression>
+			</boxedext:else>
+		</boxedext:conditional>
+	</semantic:decision>
+
+
+</semantic:definitions>

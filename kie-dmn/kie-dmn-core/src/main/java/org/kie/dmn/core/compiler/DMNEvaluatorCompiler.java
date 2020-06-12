@@ -28,13 +28,16 @@ import javax.xml.namespace.QName;
 import org.kie.api.io.Resource;
 import org.kie.dmn.api.core.AfterGeneratingSourcesListener;
 import org.kie.dmn.api.core.DMNMessage;
+import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNType;
 import org.kie.dmn.api.core.ast.BusinessKnowledgeModelNode;
 import org.kie.dmn.api.core.ast.DMNNode;
 import org.kie.dmn.api.core.ast.DecisionNode;
+import org.kie.dmn.api.core.event.DMNRuntimeEventManager;
 import org.kie.dmn.core.api.DMNExpressionEvaluator;
 import org.kie.dmn.core.api.EvaluatorResult;
 import org.kie.dmn.core.ast.DMNBaseNode;
+import org.kie.dmn.core.ast.DMNConditionalEvaluator;
 import org.kie.dmn.core.ast.DMNContextEvaluator;
 import org.kie.dmn.core.ast.DMNDTExpressionEvaluator;
 import org.kie.dmn.core.ast.DMNFunctionDefinitionEvaluator;
@@ -68,6 +71,7 @@ import org.kie.dmn.feel.runtime.functions.BaseFEELFunction;
 import org.kie.dmn.feel.runtime.functions.DTInvokerFunction;
 import org.kie.dmn.model.api.Binding;
 import org.kie.dmn.model.api.BusinessKnowledgeModel;
+import org.kie.dmn.model.api.Conditional;
 import org.kie.dmn.model.api.Context;
 import org.kie.dmn.model.api.ContextEntry;
 import org.kie.dmn.model.api.DMNElement;
@@ -167,6 +171,8 @@ public class DMNEvaluatorCompiler {
             return compileRelation( ctx, model, node, exprName, (Relation) expression );
         } else if ( expression instanceof Invocation ) {
             return compileInvocation( ctx, model, node, (Invocation) expression );
+        } else if (expression instanceof Conditional) {
+            return compileConditional(ctx, model, node, exprName, (Conditional) expression);
         } else {
             MsgUtil.reportMessage( logger,
                                    DMNMessage.Severity.ERROR,
@@ -259,6 +265,13 @@ public class DMNEvaluatorCompiler {
                     compileExpression( ctx, model, node, binding.getParameter().getName(), binding.getExpression() ) );
         }
         return invEval;
+    }
+
+    private DMNExpressionEvaluator compileConditional(DMNCompilerContext ctx, DMNModelImpl model, DMNBaseNode node, String exprName, Conditional expression) {
+        DMNExpressionEvaluator ifEvaluator = compileExpression(ctx, model, node, exprName +" [if]", expression.getIf());
+        DMNExpressionEvaluator thenEvaluator = compileExpression(ctx, model, node, exprName +" [then]", expression.getThen());
+        DMNExpressionEvaluator elseEvaluator = compileExpression(ctx, model, node, exprName+" [else]", expression.getElse());
+        return new DMNConditionalEvaluator(exprName, node.getSource(), ifEvaluator, thenEvaluator, elseEvaluator);
     }
 
     private DMNExpressionEvaluator compileRelation(DMNCompilerContext ctx, DMNModelImpl model, DMNBaseNode node, String relationName, Relation expression) {

@@ -1,0 +1,27 @@
+<xsd:schema xmlns="https://www.trisotech.com/spec/DMN/20191111/EXT/"
+	xmlns:dmn="https://www.omg.org/spec/DMN/20191111/MODEL/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="https://www.trisotech.com/spec/DMN/20191111/EXT/">
+	<xsd:import
+		namespace="https://www.omg.org/spec/DMN/20191111/MODEL/"
+		schemaLocation="DMN13.xsd" />
+	<xsd:element name="conditional" type="tConditional"
+		substitutionGroup="dmn:expression" />
+	<xsd:complexType name="tNamedExpression">
+		<xsd:sequence>
+			<xsd:element ref="dmn:expression" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="tConditional">
+		<xsd:complexContent>
+			<xsd:extension base="dmn:tExpression">
+				<xsd:sequence>
+					<xsd:element name="if" type="tNamedExpression" />
+					<xsd:element name="then" type="tNamedExpression" />
+					<xsd:element name="else" type="tNamedExpression" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>
