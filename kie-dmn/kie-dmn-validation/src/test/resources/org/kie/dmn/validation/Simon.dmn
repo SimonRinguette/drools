@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:feel="https://www.omg.org/spec/DMN/20191111/FEEL/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:drools="http://www.drools.org/kie/dmn/1.1" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:ns2="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dmn11="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"                 xmlns="http://www.trisotech.com/definitions/_3d9002ea-00a3-4b3e-a913-e3c5726c0266" id="_3d9002ea-00a3-4b3e-a913-e3c5726c0266" name="Requirement 2 special point new boxed expbkm" namespace="http://www.trisotech.com/definitions/_3d9002ea-00a3-4b3e-a913-e3c5726c0266" exporter="Decision Modeler" exporterVersion="7.2.0" triso:logoChoice="Default">
+    <semantic:extensionElements>
+        <tc:testCases>
+            <tc:testCase id="_6b513b68-9e3b-41bf-b1ac-1ec449b715b4" name="Test case 2">
+                <tc:inputNode name="Member Index" triso:label="Member Index">
+                    <tc:list>
+                        <tc:item>
+                            <tc:value xsi:type="xsd:double">5</tc:value>
+                        </tc:item>
+                    </tc:list>
+                </tc:inputNode>
+                <tc:inputNode name="Cart" triso:label="Cart">
+                    <tc:component name="Items">
+                        <tc:list>
+                            <tc:item>
+                                <tc:component name="SKU">
+                                    <tc:value xsi:type="xsd:string">S123</tc:value>
+                                </tc:component>
+                                <tc:component name="Quantity">
+                                    <tc:value xsi:type="xsd:double">2</tc:value>
+                                </tc:component>
+                                <tc:component name="Unit Cost">
+                                    <tc:value xsi:type="xsd:double">30</tc:value>
+                                </tc:component>
+                            </tc:item>
+                        </tc:list>
+                    </tc:component>
+                    <tc:component name="Sales Tax">
+                        <tc:value xsi:type="xsd:double">2.8</tc:value>
+                    </tc:component>
+                    <tc:component name="Member Phone">
+                        <tc:value xsi:type="xsd:string">5555555555</tc:value>
+                    </tc:component>
+                    <tc:component name="Purchase Date">
+                        <tc:value xsi:type="xsd:date">2020-11-25</tc:value>
+                    </tc:component>
+                </tc:inputNode>
+                <tc:inputNode name="List" triso:label="List">
+                    <tc:list>
+                        <tc:item>
+                            <tc:component name="Phone Number">
+                                <tc:value xsi:type="xsd:string">5555555555</tc:value>
+                            </tc:component>
+                            <tc:component name="Member Name">
+                                <tc:component name="First Name">
+                                    <tc:value xsi:type="xsd:string">H</tc:value>
+                                </tc:component>
+                                <tc:component name="Middle Initial">
+                                    <tc:value xsi:nil="true"/>
+                                </tc:component>
+                                <tc:component name="Last Name">
+                                    <tc:value xsi:type="xsd:string">S</tc:value>
+                                </tc:component>
+                            </tc:component>
+                            <tc:component name="Special Offer">
+                                <tc:component name="Offer Name">
+                                    <tc:value xsi:type="xsd:string">PROMO</tc:value>
+                                </tc:component>
+                                <tc:component name="Start Date">
+                                    <tc:value xsi:type="xsd:date">2020-11-01</tc:value>
+                                </tc:component>
+                                <tc:component name="End date">
+                                    <tc:value xsi:type="xsd:date">2020-11-30</tc:value>
+                                </tc:component>
+                                <tc:component name="Points">
+                                    <tc:value xsi:type="xsd:double">5000</tc:value>
+                                </tc:component>
+                                <tc:component name="Item SKUs">
+                                    <tc:value xsi:type="xsd:string">S123</tc:value>
+                                </tc:component>
+                            </tc:component>
+                        </tc:item>
+                    </tc:list>
+                </tc:inputNode>
+                <tc:resultNode name="Invoke" triso:label="Invoke">
+                    <tc:expected>
+                        <tc:list>
+                            <tc:item>
+                                <tc:value xsi:type="xsd:string">0</tc:value>
+                            </tc:item>
+                        </tc:list>
+                    </tc:expected>
+                </tc:resultNode>
+            </tc:testCase>
+        </tc:testCases>
+    </semantic:extensionElements>
+    <semantic:itemDefinition name="tMember_List" label="tMember List" isCollection="true">
+        <semantic:typeRef>tMember</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tMember" label="tMember" isCollection="false">
+        <semantic:itemComponent id="_d6ca3f4f-6bcf-47a3-9ffe-88a5a03f158f" name="Phone Number" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_aae72448-836a-4f95-95da-46bc03946326" name="Member Name" isCollection="false">
+            <semantic:itemComponent id="_8d1c45eb-2efb-4924-8bf3-33dc302d2fe8" name="First Name" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_f6ae794d-841d-4502-b91a-3b50fe5fc86d" name="Middle Initial" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_51f89549-d619-4094-941b-fff575adb27b" name="Last Name" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_21e48ec3-d995-4fe9-a69d-1c0e2dbf55c1" name="Special Offer" isCollection="false">
+            <semantic:itemComponent id="_233bf252-ee00-4bca-abbb-da227dcb5ad7" name="Offer Name" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_81309b03-5021-4e47-b92c-8bd27ed9eaf7" name="Start Date" isCollection="false">
+                <semantic:typeRef>date</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_44cd209f-874f-4c00-b60b-b2ae9ec9da74" name="End date" isCollection="false">
+                <semantic:typeRef>date</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_40ab6aa6-6b76-4ea3-9d9a-d0c86c181806" name="Points" isCollection="false">
+                <semantic:typeRef>number</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_dee093c0-1a2d-4018-b7ca-03d0d6b3294b" name="Item SKUs" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTenders" label="tTenders" isCollection="true">
+        <semantic:typeRef>tTender</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTender" label="tTender" isCollection="false">
+        <semantic:itemComponent id="_c3d69b22-48f2-4287-84b2-8f0a6069713e" name="Tender Type" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+            <semantic:allowedValues triso:constraintsType="enumeration">
+                <semantic:extensionElements>
+                    <triso:constraintDetails>
+                        <triso:display>"Cash", "Credit Card", "Check", "Other"</triso:display>
+                        <triso:choices>
+                            <triso:value>"Cash"</triso:value>
+                            <triso:display>"Cash"</triso:display>
+                        </triso:choices>
+                        <triso:choices>
+                            <triso:value>"Credit Card"</triso:value>
+                            <triso:display>"Credit Card"</triso:display>
+                        </triso:choices>
+                        <triso:choices>
+                            <triso:value>"Check"</triso:value>
+                            <triso:display>"Check"</triso:display>
+                        </triso:choices>
+                        <triso:choices>
+                            <triso:value>"Other"</triso:value>
+                            <triso:display>"Other"</triso:display>
+                        </triso:choices>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"Cash","Credit Card","Check","Other"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_560fe7f1-8577-410d-8073-cea6ac747703" name="Amount" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tShopping_Cart" label="tShopping Cart" isCollection="false">
+        <semantic:description>&lt;p&gt;Description visible&lt;/p&gt;</semantic:description>
+        <semantic:itemComponent id="_ee63c491-1b5c-4c20-991c-0fb0f1a7d902" name="Items" isCollection="true">
+            <semantic:typeRef>tItem</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_db80c78d-0e26-48bf-a3af-24af293f1ca9" name="Sales Tax" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_fde4d6a5-0011-4a09-9ed7-20a327d30de4" name="Member Phone" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_a960bdf4-22d1-46bf-a828-f9cf9683c330" name="Purchase Date" isCollection="false">
+            <semantic:typeRef>date</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tItem" label="tItem" isCollection="false">
+        <semantic:itemComponent id="_0de0d372-8b20-468e-9bbf-13c3b59f69bb" name="SKU" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_46f579fb-f8b4-4dcb-ba50-e78c27196a8d" name="Quantity" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_9eb5d53d-bd2a-4d3b-94ce-e72cf85b3589" name="Unit Cost" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="collectionOfNumber" isCollection="true">
+        <semantic:typeRef>number</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_3d9002ea-00a3-4b3e-a913-e3c5726c0266_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_3d9002ea-00a3-4b3e-a913-e3c5726c0266_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_3c9907c4-cb47-47aa-81cd-2fd6aaa5f8d5"/>
+        <semantic:inputData href="#_02d4b6a3-c8ac-4918-820a-a249461e8e88"/>
+        <semantic:inputData href="#_83755775-4678-47db-8afb-70f5578c6a90"/>
+        <semantic:inputData href="#_2a5d6954-5564-412a-b015-26ecbcebe29a"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_e3674397-2c7f-4a35-b59d-7f0026e15500_DS" name="Diagram Page 1" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Page 1" id="_e3674397-2c7f-4a35-b59d-7f0026e15500_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_3c9907c4-cb47-47aa-81cd-2fd6aaa5f8d5"/>
+        <semantic:inputData href="#_02d4b6a3-c8ac-4918-820a-a249461e8e88"/>
+        <semantic:inputData href="#_83755775-4678-47db-8afb-70f5578c6a90"/>
+        <semantic:inputData href="#_2a5d6954-5564-412a-b015-26ecbcebe29a"/>
+    </semantic:decisionService>
+    <semantic:decision id="_3c9907c4-cb47-47aa-81cd-2fd6aaa5f8d5" name="Invoke" triso:useOutputTypeAsAnswer="false">
+        <semantic:variable name="Invoke" id="_812d58ca-251d-4607-bcc4-5eff536d1ec0" typeRef="Any"/>
+        <semantic:informationRequirement id="_d5a572c2-34a0-480d-af7d-278684edd9ae">
+            <semantic:requiredInput href="#_02d4b6a3-c8ac-4918-820a-a249461e8e88"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_b52cc337-af80-4a65-8d45-61299e855472">
+            <semantic:requiredInput href="#_83755775-4678-47db-8afb-70f5578c6a90"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_020a6335-7541-435c-9fe9-8d304a89201c">
+            <semantic:requiredInput href="#_2a5d6954-5564-412a-b015-26ecbcebe29a"/>
+        </semantic:informationRequirement>
+        <semantic:literalExpression typeRef="Any" id="_2d00c08d-2643-4c0d-9c26-1fa15d4d874d" triso:expressionId="_28f82bdb-e584-4aa6-ac03-01a03ebe3a16" triso:descriptionVisible="false">
+            <semantic:text>List[1].Special Offer.Start Date &lt;= Cart.Purchase Date and List[1].Special Offer.End date &gt;= Cart.Purchase Date</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
+    <semantic:inputData id="_02d4b6a3-c8ac-4918-820a-a249461e8e88" name="Member Index">
+        <semantic:variable name="Member Index" id="_19984c1e-bccd-4dac-9847-3853d78dbe99" typeRef="collectionOfNumber"/>
+    </semantic:inputData>
+    <semantic:inputData id="_83755775-4678-47db-8afb-70f5578c6a90" name="Cart">
+        <semantic:variable name="Cart" id="_8746bcf0-4558-455c-bb18-89987e5c1833" typeRef="tShopping_Cart"/>
+    </semantic:inputData>
+    <semantic:inputData id="_2a5d6954-5564-412a-b015-26ecbcebe29a" name="List">
+        <semantic:variable name="List" id="_76985ed2-a314-47ae-b3f0-b400b67138c6" typeRef="tMember_List"/>
+    </semantic:inputData>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_e3674397-2c7f-4a35-b59d-7f0026e15500" triso:modelElementRef="_dec5006b-8f1b-4827-a160-a1afdbf5af3e" name="Page 1">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1485"/>
+            <dmndi:DMNShape id="_e89a2c74-3d9c-4bc1-b150-e075da7a86ea" dmnElementRef="_3c9907c4-cb47-47aa-81cd-2fd6aaa5f8d5">
+                <dc:Bounds x="374.5" y="101" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_70814cfb-6598-4e1e-a583-aeb2f5470406" dmnElementRef="_02d4b6a3-c8ac-4918-820a-a249461e8e88">
+                <dc:Bounds x="206.2588291168213" y="217" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_5b700246-68b2-4e1a-8607-c8c2dc6dc5a6" dmnElementRef="_83755775-4678-47db-8afb-70f5578c6a90">
+                <dc:Bounds x="580.2588291168213" y="217" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_c0fe57bd-d82e-4a10-9e85-9a9c6801a846" dmnElementRef="_2a5d6954-5564-412a-b015-26ecbcebe29a">
+                <dc:Bounds x="383.2588291168213" y="216" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_142750a7-327a-46ef-9b7c-e61add79da7e" dmnElementRef="_d5a572c2-34a0-480d-af7d-278684edd9ae" sourceElement="_70814cfb-6598-4e1e-a583-aeb2f5470406" targetElement="_e89a2c74-3d9c-4bc1-b150-e075da7a86ea">
+                <di:waypoint x="274" y="217"/>
+                <di:waypoint x="451" y="161"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_f12c7162-500c-4668-b13a-b586a793d12b" dmnElementRef="_b52cc337-af80-4a65-8d45-61299e855472" sourceElement="_5b700246-68b2-4e1a-8607-c8c2dc6dc5a6" targetElement="_e89a2c74-3d9c-4bc1-b150-e075da7a86ea">
+                <di:waypoint x="648" y="217"/>
+                <di:waypoint x="451" y="161"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_be6334f8-8313-4fdb-bac4-621568ae46c5" dmnElementRef="_020a6335-7541-435c-9fe9-8d304a89201c" sourceElement="_c0fe57bd-d82e-4a10-9e85-9a9c6801a846" targetElement="_e89a2c74-3d9c-4bc1-b150-e075da7a86ea">
+                <di:waypoint x="451" y="216"/>
+                <di:waypoint x="451" y="161"/>
+                <dmndi:DMNLabel sharedStyle="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_3d9002ea-00a3-4b3e-a913-e3c5726c0266_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>

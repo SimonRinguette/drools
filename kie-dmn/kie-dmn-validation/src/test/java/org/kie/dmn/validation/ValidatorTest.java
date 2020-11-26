@@ -350,7 +350,16 @@ public class ValidatorTest extends AbstractValidatorTest {
                                                    p.getMessageType().equals(DMNMessageType.MISSING_EXPRESSION) &&
                                                    p.getSourceId().equals("d_Adjudication")));
     }
+    
+    @Test
+    public void testSimon() {
 
+        List<DMNMessage> validate = validator.validate(getReader("Simon.dmn"), VALIDATE_SCHEMA, VALIDATE_MODEL, VALIDATE_COMPILATION);
+
+        assertTrue(validate.size() == 0);
+    }
+
+    
     @Test
     public void testDecisionServiceCompiler20180830() {
         // DROOLS-2943 DMN DecisionServiceCompiler not correctly wired for DMNv1.2 format
@@ -371,6 +380,8 @@ public class ValidatorTest extends AbstractValidatorTest {
         assertThat(ValidatorUtil.formatMessages(validate), validate.size(), is(1));
         assertTrue(validate.stream().anyMatch(p -> p.getMessageType().equals(DMNMessageType.MISSING_TYPE_REF) && p.getSourceId().equals("_63d05cff-8e3b-4dad-a355-fd88f8bcd613")));
     }
+    
+    
 
     @Test
     public void testDecisionService20181008() {
